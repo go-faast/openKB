@@ -21,7 +21,7 @@
         "mermaid": false,
         "mathjax": false,
         "mathjax_input_mode": "TeX-MML-AM_CHTML",
-        "app_context": "/knowledge",
+        "app_context": "knowledge",
         "links_blank_page": true,
         "database": {
             "type": "mongodb"
