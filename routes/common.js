@@ -15,7 +15,7 @@ exports.read_config = function(){
     let configFile = path.join(__dirname, '..', 'config', 'config.json');
 
     // depreciated path
-    let defaultConfigFile = path.join(__dirname, 'config.js');
+    let defaultConfigFile = path.join(__dirname, 'config.json');
     if(fs.existsSync(defaultConfigFile) === true){
         // create config dir if doesnt exist
         let dir = path.join(__dirname, '..', 'config');
