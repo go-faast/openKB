@@ -36,11 +36,11 @@
                         {{#each featured_results}}
                         {{#if this.kb_permalink}}
                         <li class="list-group-item"><a
-                                href="/{{@root.config.settings.route_name}}/{{this.kb_permalink}}">{{this.kb_title}}</a>
+                                href="{{@root.config.settings.route_name}}/{{this.kb_permalink}}">{{this.kb_title}}</a>
                         </li>
                         {{else}}
                         <li class="list-group-item"><a
-                                href="/{{@root.config.settings.route_name}}/{{this._id}}">{{this.kb_title}}</a></li>
+                                href="{{@root.config.settings.route_name}}/{{this._id}}">{{this.kb_title}}</a></li>
                         {{/if}}
                         {{/each}}
                     </ul>

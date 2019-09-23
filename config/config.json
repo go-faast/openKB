@@ -27,7 +27,7 @@
             "type": "mongodb",
             "connection_string": "mongodb://127.0.0.1:27017/openkb"
         },
-        "allow_voting": true,
+        "allow_voting": false,
         "google_analytics": "",
         "theme": "twitter",
         "show_logon": false,
