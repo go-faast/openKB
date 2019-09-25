@@ -73,8 +73,10 @@ handlebars = handlebars.create({
             if(keywords){
                 let array = keywords.split(','); let links = '';
                 for(let i = 0; i < array.length; i++){
-                    if(array[i].trim() !== ''){
-                        links += '<a href="' + app_context + '/search/' + array[i].trim() + '">' + array[i].trim() + '</a> <span class="keywordSeporator">|</span> ';
+                    if(array[i].trim() !== '' && i !== array.length - 1){
+                        links += '<a href="' + app_context + '/search/' + array[i].trim() + '">' + array[i].trim() + '</a><span class="keywordSeporator">,</span> ';
+                    } else {
+                        links += '<a href="' + app_context + '/search/' + array[i].trim() + '">' + array[i].trim() + '</a>';
                     }
                 }return links.substring(0, links.length - 1);
             }

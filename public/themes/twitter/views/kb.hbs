@@ -1,7 +1,7 @@
 <div class="row searchBar">
     {{> twitter/views/partials/navbar}}
     <div style="margin-bottom: 20px;" class="">
-        <h1>How can we help?</h1>
+        <h1 style="font-weight: 400;">Crypto Knowledge Base</h1>
     </div>
     <form action="{{app_context}}/search" id="search_form" method="post">
         {{#if config.settings.show_featured_articles}}
@@ -51,7 +51,7 @@
             {{else}}
             <div class="col-md-8 col-lg-8">
                 {{/if}}
-                <h1 style="padding-bottom: 25px;padding-top: 15px;">{{result.kb_title}}</h1>
+                <h1 style="padding-bottom: 25px;padding-top: 15px; font-weight:500;">{{result.kb_title}}</h1>
                 <div class="body_text">
                     {{{kb_body}}}
                 </div>
@@ -123,6 +123,7 @@
                 </div>
                 {{/if}}
                 <h5 class="keywords">
+                    Tags:
                     {{{split_keywords result.kb_keywords}}}
                 </h5>
             </div>
