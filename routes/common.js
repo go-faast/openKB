@@ -124,6 +124,11 @@ exports.restrict = function (req, res, next){
     let config = exports.read_config();
     let url_path = req.url;
 
+    if (url_path === '/articles') {
+        exports.check_login(req, res, next);
+        return;
+    }
+
     // if not protecting we check for public pages and don't check_login
     if(url_path.substring(0, 5).trim() === '/'){
         if(config.settings.password_protect === false){
