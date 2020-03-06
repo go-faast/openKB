@@ -114,7 +114,8 @@
             {{/if}}
             {{#each featured_tags}}
                 {{#if (array_has_items this.results) }}
-             <div class="panel panel-default col-xs-12 col-lg-6" style="margin-top: 30px; padding-left: 0px; padding-right: 0px;">
+                <div class='row'>
+                    <div class="panel panel-default col-xs-12 col-lg-6" style="margin-top: 30px; padding-left: 0px; padding-right: 0px; margin-left: 5px; margin-right: 5px;">
                         <div class="panel-heading">{{uppercase_first_letter this.keyword}} Articles</div>
                         <div class="panel-body">
                             <ul class="list-group">
@@ -152,6 +153,7 @@
                         <a class="panel-footer panel-heading" style="display: block; text-align: center;" href="/{{@root.config.settings.app_context}}/search/{{this.keyword}}">
                             View more
                         </a>
+                    </div>
                     </div>
                 {{/if}}
             {{/each}}
