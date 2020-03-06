@@ -255,6 +255,7 @@ app.use(app_context + '/favicon.png', express.static(path.join(__dirname, 'publi
 
 // serving static content
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, app_context + '/public')));
 
 // Make stuff accessible to our router
 app.use((req, res, next) => {
