@@ -65,6 +65,12 @@ handlebars = handlebars.create({
         __: function (value){
             return i18n.__(value);
         },
+        array_has_items: function (obj) {
+            return obj && obj.length > 0;
+        },  
+        uppercase_first_letter: function (str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }, 
         split_keywords: function (keywords){
             let app_context = config.settings.app_context;
             if(app_context !== ''){

@@ -185,5 +185,8 @@
 	"support@faa.st": "support@faa.st",
 	"Visible state": "Visible state",
 	"Public": "Public",
-	"Private": "Private"
+	"Private": "Private",
+	"config.settings.featured_tags.split is not a function": "config.settings.featured_tags.split is not a function",
+	"Cannot read property 'search' of undefined": "Cannot read property 'search' of undefined",
+	"index_id_array is not defined": "index_id_array is not defined"
 }

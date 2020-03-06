@@ -54,16 +54,8 @@ h2,
     opacity: 1;
 }
 
-.searchBar::after {
-    content: "";
-    background: transparent url(https://images.unsplash.com/photo-1506318137071-a8e063b4bec0) no-repeat top left;
-    background-size: 100%;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0px;
-    left: 0px;
-    opacity: 0.12;
+.faast-bg {
+    background: radial-gradient(#515664, #323540) rgba(34,34,40,0.94);
 }
 
 .searchBar h1 {
@@ -95,6 +87,17 @@ p.subheading {
     border-bottom-right-radius: 30px;
 }
 
+.faast-green-btn {
+    background-color: #00D7B8;
+    border-color: #008472;
+    color: #fff;
+}
+.faast-green-btn:hover {
+    background-color: rgb(2, 192, 163);
+    border-color: #008472;
+    color: #fff;
+}
+
 .featuredPanel {
     height: 150px;
     text-align: center;
@@ -109,7 +112,7 @@ p.subheading {
 }
 
 .featuredArticlesFooter {
-    background-color: #0c85d0;
+    background-color: red;
     border-color: #0b7fc6;
     text-align: center;
     color: #fff;

@@ -12,6 +12,8 @@
         },
         "website_title": "Faa.st Crypto Knowledge Base",
         "show_featured_articles": false,
+        "featured_tags": ["general", "support", "wallet", "asset", "affiliates"],
+        "show_featured_tags": true,
         "show_featured_in_article": false,
         "featured_articles_count": "4",
         "password_protect": false,
