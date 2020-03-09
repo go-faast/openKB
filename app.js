@@ -67,7 +67,10 @@ handlebars = handlebars.create({
         },
         array_has_items: function (obj) {
             return obj && obj.length > 0;
-        },  
+        },
+        log: function (x) {
+            return console.log('log', x);
+        },   
         uppercase_first_letter: function (str) {
             return str.charAt(0).toUpperCase() + str.slice(1);
         }, 

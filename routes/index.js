@@ -44,7 +44,7 @@ router.get('/', common.restrict, (req, res, next) => {
                     index_id_array.push(id.ref);
                 }
             });
-            common.dbQuery(db.kb, { _id: { $in: index_id_array }, kb_published: 'true', kb_versioned_doc: { $ne: true } }, { kb_viewcount: -1 }, 5, (err, results) => {
+            common.dbQuery(db.kb, { _id: { $in: index_id_array }, kb_published: 'true', kb_versioned_doc: { $ne: true } }, null, null, (err, results) => {
                 var current_tag = {};
                 results = results.map(r => { r.tag = tag; return r })
                 current_tag.keyword = tag;
