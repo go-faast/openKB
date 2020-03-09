@@ -46,7 +46,7 @@ router.get('/', common.restrict, (req, res, next) => {
             });
             common.dbQuery(db.kb, { _id: { $in: index_id_array }, kb_published: 'true', kb_versioned_doc: { $ne: true } }, null, null, (err, results) => {
                 var current_tag = {};
-                results = results.map(r => { r.tag = tag; return r })
+                results = results.map(r => { r.tag = tag; return r }).filter(s => s.kb_keywords.indexOf(tag) >= 0)
                 current_tag.keyword = tag;
                 current_tag.results = results;
                 featured_tags.push(current_tag)
