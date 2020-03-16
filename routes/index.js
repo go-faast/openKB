@@ -1170,7 +1170,7 @@ router.post('/file/upload_file', common.restrict, inline_upload.single('file'), 
     if(req.file){
         // check for upload select
         const upload_dir = path.join(appDir, 'public', 'uploads', 'inline_files');
-        const relative_upload_dir = req.app_context + '/uploads/inline_files';
+       //const relative_upload_dir = req.app_context + '/uploads/inline_files';
 
         const file = req.file;
         const source = fs.createReadStream(file.path);
@@ -1180,12 +1180,20 @@ router.post('/file/upload_file', common.restrict, inline_upload.single('file'), 
         source.pipe(dest);
         source.on('end', () => { });
 
-        // delete the temp file.
-        fs.unlink(file.path, (err) => { });
+        common.upload_file_s3(file.path, file.originalname).then((url) => { 
+             // uploaded
+             console.log(url)
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
+                'filename': url,
+              }))
+        }).catch(e => console.log('error uploading image to s3', e))
 
-        // uploaded
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ 'filename': relative_upload_dir + '/' + file.originalname }));
+        // delete the temp file.
+        //fs.unlink(file.path, (err) => { });
+         // uploaded
+        // res.writeHead(200, { 'Content-Type': 'application/json' });
+        // res.end(JSON.stringify({ 'filename': relative_upload_dir + '/' + file.originalname }));
         return;
     }
     res.writeHead(500, { 'Content-Type': 'application/json' });

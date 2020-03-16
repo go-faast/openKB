@@ -3,6 +3,7 @@ const fs = require('fs');
 const lunr = require('lunr');
 const ObjectID = require('mongodb').ObjectID;
 const sanitizeHtml = require('sanitize-html');
+const AWS = require('aws-sdk');
 
 exports.clear_session_value = function (session, session_var){
     let temp = session[session_var];
@@ -100,6 +101,29 @@ exports.suggest_allowed = function (req, res, next){
     }
     res.render('error', { message: '403 - Forbidden', helpers: req.handlebars });
 };
+
+exports.upload_file_s3 = function (filePath, fileName) {
+    return new Promise((resolve, reject) => {
+        const s3 = new AWS.S3({
+            accessKeyId: process.env.S3_ACCESS_KEY,
+            secretAccessKey: process.env.S3_SECRET_KEY
+        });
+        const fileContent = fs.readFileSync(filePath);
+        const params = {
+            Bucket: process.env.S3_BUCKET_NAME,
+            Key: fileName,
+            Body: fileContent
+        };
+        s3.upload(params, function(err, data) {
+            if (err) {
+                reject(err);
+                throw err
+            }
+            console.log(`File uploaded successfully. ${data.Location}`);
+            resolve(data.Location)
+        });
+    })
+}
 
 exports.validate_permalink = function (db, data, callback){
     // only validate permalink if it exists
