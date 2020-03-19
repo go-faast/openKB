@@ -28,29 +28,17 @@ router.get('/', common.restrict, (req, res, next) => {
     common.config_expose(req.app);
     const featuredCount = config.settings.featured_articles_count ? config.settings.featured_articles_count : 5;
     var tag_list = config.settings.featured_tags;
-    const index = req.app.index;
-    
     var featured_tags = new Array();
-    const index_id_array = [];
 	if(tag_list.length > 0 && tag_list[0]) {
 		for (var i = 0; i < tag_list.length; i++) {
             const tag = tag_list[i]
-			index.search(tag).forEach((id) => {
-                console.log('article found', tag, ':', id)
-                // if mongoDB we use ObjectID's, else normal string ID's
-                if(config.settings.database.type !== 'embedded'){
-                    index_id_array.push(common.getId(id.ref));
-                }else{
-                    index_id_array.push(id.ref);
-                }
-            });
-            common.dbQuery(db.kb, { _id: { $in: index_id_array }, kb_published: 'true', kb_versioned_doc: { $ne: true } }, { kb_viewcount: -1 }, null, (err, results) => {
+            common.dbQuery(db.kb, { kb_keywords: new RegExp(tag, 'i'), kb_published: 'true', kb_versioned_doc: { $ne: true } }, { kb_viewcount: -1 }, null, (err, results) => {
                 var current_tag = {};
-                results = results.map(r => { r.tag = tag; return r }).filter(s => s.kb_keywords.indexOf(tag) >= 0).slice(0,5)
+                const finalResults = results.map(r => { r.tag = tag; return r }).slice(0,5)
                 current_tag.keyword = tag;
-                current_tag.results = results;
+                current_tag.results = finalResults;
                 featured_tags.push(current_tag)
-            });
+            })
 		}
 	}
 
@@ -66,7 +54,6 @@ router.get('/', common.restrict, (req, res, next) => {
     // get the top results based on sort order
     common.dbQuery(db.kb, { kb_published: 'true' }, sortBy, config.settings.num_top_results, (err, top_results) => {
         common.dbQuery(db.kb, { kb_published: 'true', kb_featured: 'true' }, sortBy, featuredCount, (err, featured_results) => {
-            console.log(JSON.stringify(featured_tags))
             res.render('index', {
                 title: 'Faa.st Crypto Knowledge Base',
                 user_page: true,

@@ -27,7 +27,7 @@
         "links_blank_page": true,
         "database": {
             "type": "mongodb",
-            "connection_string": "mongodb://127.0.0.1:27017/openkb1"
+            "connection_string": "mongodb://heroku_nffd53gs:vmuk6elnhn3be5uq04gd1dfgu9@ds317808.mlab.com:17808/heroku_nffd53gs"
         },
         "allow_voting": false,
         "google_analytics": "<script async src='https://www.googletagmanager.com/gtag/js?id=UA-100689193-1'></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-100689193-1');</script>",
