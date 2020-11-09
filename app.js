@@ -341,13 +341,15 @@ if(config.settings.database.type === 'embedded'){
         });
     });
 }else{
-    MongoClient.connect(config.settings.database.connection_string, {}, (err, db) => {
+    const mongoOptions = { useUnifiedTopology: true }
+    MongoClient.connect(config.settings.database.connection_string, mongoOptions, function (err, client) {
         // On connection error we display then exit
         if(err){
             console.error('Error connecting to MongoDB: ' + err);
             process.exit();
         }
 
+        const db = client.db()
         // setup the collections
         db.users = db.collection('users');
         db.kb = db.collection('kb');
